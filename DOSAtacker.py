@@ -2,8 +2,7 @@
 Code: DoS Attack Using SOcket Programming
 
 This code is a simple script to simulate a DoS and DDoS attack using socket programming in Python. It targets a 
-specific IP address and port, continuously sending HTTP GET requests to overwhelm the server. The `attack` 
-function creates a socket connection to the target, sends HTTP GET requests, and then closes the connection. 
+specific IP address and port, continuously sending HTTP GET requests to overwhelm the server.  
 The script launches multiple threads (100 in this case) to increase the intensity of the attack. Each thread 
 runs the `attack` function in a loop, generating constant traffic to the target server.
 
