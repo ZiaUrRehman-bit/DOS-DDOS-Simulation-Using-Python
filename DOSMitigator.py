@@ -1,16 +1,30 @@
+
+'''
+Code: DoS DDoS attack mitigator.
+
+This code sets up a basic TCP server that monitors and mitigates potential HTTP flood attacks by blocking IPs 
+that exceed a threshold number of requests within a given time window. It uses threading to handle multiple 
+client connections simultaneously and a separate thread to monitor and reset request counts periodically. 
+Additionally, it provides a command-line interface (CLI) to unblock previously blocked IP addresses.
+
+
+'''
+
+
 import socket
 import threading
-from collections import defaultdict
+from collections import defaultdict # imports defaultdict from the collections module, which provides a dictionary-like object with a default value.
 import time
 
-server_ip = "0.0.0.0"
-server_port = 8080
-threshold = 100  # Number of requests before blocking
-monitoring_window = 10  # Time window in seconds
+server_ip = "0.0.0.0" #  stores the IP address to bind the server to, where "0.0.0.0" means all available interfaces.
+server_port = 8080  # port number on which the server will listen for connections.
+threshold = 100  # maximum number of requests allowed from a single IP before it gets blocked.
+monitoring_window = 10  # Time window in seconds for monitoring request counts.
 
-request_count = defaultdict(int)
-blocked_ips = set()
-lock = threading.Lock()
+request_count = defaultdict(int) # This creates a defaultdict that automatically initializes integer values for new keys, used to keep track 
+                                 # of request counts from different IPs.
+blocked_ips = set()             # This creates a set to store the IP addresses that are blocked.
+lock = threading.Lock()     # This creates a lock object to ensure thread-safe operations on shared data.
 
 def monitor_requests():
     while True:

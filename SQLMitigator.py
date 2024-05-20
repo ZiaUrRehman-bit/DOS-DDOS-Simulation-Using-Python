@@ -1,3 +1,14 @@
+'''
+This code sets up a simple server that listens for incoming connections on a specified IP address and port, allowing 
+clients to attempt login using a username and password. It initializes a SQLite database with a users table and an example 
+user. When a client connects, the server checks the received credentials against the database, while also implementing basic 
+SQL injection prevention. If the credentials are valid, the server responds with "Login successful"; otherwise, it responds with 
+"Invalid credentials".
+
+'''
+
+
+
 import socket
 import sqlite3
 import threading
